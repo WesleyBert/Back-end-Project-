@@ -31,7 +31,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://127.0.0.1:5173", maxAge = 3600)
 @RestController	
-@RequestMapping("/api/comprapassagem")
+@RequestMapping("/passagem")
 public class CompraPassagemController {
 
 	@Autowired
@@ -40,8 +40,8 @@ public class CompraPassagemController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@PostMapping
-	public ResponseEntity salvar(@RequestBody CompraPassagemDTO dto) {
+	@PostMapping("/comprar")
+	public ResponseEntity<Object> salvar(@RequestBody CompraPassagemDTO dto) {
 		try {
 			CompraPassagem entidade = converter(dto);
 			entidade = service.salvar(entidade);

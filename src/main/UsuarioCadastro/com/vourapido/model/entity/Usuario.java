@@ -1,6 +1,9 @@
 package com.vourapido.model.entity;
 
+import java.util.List;   
+
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 
+
 public class Usuario {
 
 	@Id
@@ -37,4 +41,7 @@ public class Usuario {
 	
 	@Column
 	private String senha;
+
+	@ElementCollection
+	private List<Acesso> acesso;
 }

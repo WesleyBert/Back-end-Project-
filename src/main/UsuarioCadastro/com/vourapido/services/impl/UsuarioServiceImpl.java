@@ -2,9 +2,8 @@ package com.vourapido.services.impl;
 
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.vourapido.exception.ErroAutenticacao;
@@ -18,6 +17,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
 	private UsuarioRepository repository;
+	
+	private BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	@Override
 	public Usuario autenticar(String email, String senha) {
@@ -36,7 +39,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public Usuario salvarUsuario(Usuario usuario) {
-		validarEmail(usuario.getEmail());
+		validarEmail(usuario.getEmail());		
+		usuario.setSenha(passwordEncoder().encode(usuario.getSenha()));
+		
 		return repository.save(usuario);
 	}
 

@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan(basePackages = {"com.vourapido.model.entity"})
 @EnableJpaRepositories({"com.vourapido.repositories"})
 @ComponentScan(basePackages = {"com.vourapido.controller", "com.vourapido.services",
-		"com.vourapido.services.impl"})
+	"com.vourapido.services.impl","com.vourapido.security"})
 
 @SpringBootApplication
 public class ProjetoVouRapidoApplication {

@@ -24,7 +24,7 @@ import com.vourapido.services.UsuarioService;
 
 @CrossOrigin(origins = "http://127.0.0.1:5173", maxAge = 3600)
 @RestController
-@RequestMapping("api/usuarios")
+@RequestMapping("/usuario")
 public class UsuarioController {
 	
 	@Autowired
@@ -49,7 +49,7 @@ public class UsuarioController {
 	}
 	
 	
-	@PostMapping
+	@PostMapping("/create")
 	public ResponseEntity salvar(@RequestBody UsuarioDTO dto) {
 		Usuario usuario = Usuario.builder()
 				.nome(dto.getNome())

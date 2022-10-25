@@ -1,8 +1,10 @@
 package com.vourapido.security;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.Collection;
 import java.util.stream.Collectors;
+
+import javax.persistence.Entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -10,24 +12,25 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.vourapido.model.entity.Usuario;
 
+@Entity
 public class UsuarioPrincipal implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
 	
-	private String username;
+	private String nome;
 	private String password;
 	private String email;
 	private Collection<? extends GrantedAuthority>Authorities;
 
 	public UsuarioPrincipal(Usuario usuario) {
-		this.username = usuario.getNome();
+		this.nome = usuario.getNome();
 		this.password = usuario.getSenha();
 		this.email = usuario.getEmail();
 		try {
 			this.Authorities = usuario.getAcesso()
 					.stream().map(acesso -> {
 				return new
-						SimpleGrantedAuthority("Acesso" + acesso.getName());
+						SimpleGrantedAuthority("Acesso" + acesso.getId());
 			}).collect(Collectors.toList());
 		}catch(Exception e) {
 			this.Authorities = new ArrayList<>();
@@ -43,9 +46,8 @@ public class UsuarioPrincipal implements UserDetails{
 		return password;
 	}
 
-	@Override
-	public String getUsername() {
-		return username;
+	public String getNome() {
+		return nome;
 	}
 	
 	public String getEmail() {
@@ -74,6 +76,11 @@ public class UsuarioPrincipal implements UserDetails{
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

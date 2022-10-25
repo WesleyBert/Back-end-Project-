@@ -14,8 +14,8 @@ public class HomeController {
 	}
 	
 	@PreAuthorize("hasRole('USER')")
-	@GetMapping("/user")
-	public String user() {
+	@GetMapping("/usuario")
+	public String usuario() {
 		return "Olá usuario";
 	}
 	@PreAuthorize("hasRole('ADMIN')")

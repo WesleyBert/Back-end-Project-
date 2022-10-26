@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.vourapido.model.entity.Usuario;
 
-@Entity
+
 public class UsuarioPrincipal implements UserDetails{
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +30,7 @@ public class UsuarioPrincipal implements UserDetails{
 			this.Authorities = usuario.getAcesso()
 					.stream().map(acesso -> {
 				return new
-						SimpleGrantedAuthority("Acesso" + acesso.getId());
+						SimpleGrantedAuthority("Acesso" + acesso.getNome());
 			}).collect(Collectors.toList());
 		}catch(Exception e) {
 			this.Authorities = new ArrayList<>();
@@ -45,7 +45,7 @@ public class UsuarioPrincipal implements UserDetails{
 	public String getPassword() {
 		return password;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -80,7 +80,7 @@ public class UsuarioPrincipal implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return nome;
 	}
 
 }

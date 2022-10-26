@@ -18,13 +18,11 @@ public class UsuarioDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String nome) throws UsernameNotFoundException {
 		Usuario usuario = repo.findByUsernameFetchAcesso(nome);
-		if(usuario == null) {
-			usuario = repo.findByUsernameFetchAcesso(nome);
+		if(usuario == null) 
+			usuario = repo.findByNome(nome);
+		if(usuario == null) 
+				throw new Error("Usuario não existe!");
+			return new UsuarioPrincipal(usuario);
 		}
-		if(usuario == null) {
-			throw new Error("Usuario não existe!");
-		}
-		return new UsuarioPrincipal(usuario);
 	}
 
-}

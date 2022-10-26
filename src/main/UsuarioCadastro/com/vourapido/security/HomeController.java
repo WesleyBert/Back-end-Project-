@@ -8,16 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin("*")
 public class HomeController {
-	@GetMapping("/home")
-	 public String home() {
-		return "funcionando";
-	}
 	
-	@PreAuthorize("hasRole('USER')")
-	@GetMapping("/usuario")
-	public String usuario() {
-		return "Olá usuario";
-	}
+	
+	
+	 @PreAuthorize("hasRole('USER')")
+	    @GetMapping("/user")
+	    public String usuario() {
+	        return "/user";
+	    }
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/admin")
 	public String admin() {

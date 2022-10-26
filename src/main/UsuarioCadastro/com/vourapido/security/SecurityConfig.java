@@ -41,7 +41,7 @@ public class SecurityConfig {
 		return http
 				.csrf().disable()
 				.authorizeHttpRequests(auth -> auth
-				.antMatchers("/","/home","/usuario/create","/passagem/comprar").permitAll()
+				.antMatchers("/login","/home","/user").permitAll()
 					.anyRequest().authenticated()
 					)
 				.userDetailsService(usuarioDetailsService)

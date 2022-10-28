@@ -16,10 +16,10 @@ public class UsuarioDetailsService implements UserDetailsService{
 	UsuarioRepository repo;
 	
 	@Override
-	public UserDetails loadUserByUsername(String nome) throws UsernameNotFoundException {
-		Usuario usuario = repo.findByUsernameFetchAcesso(nome);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Usuario usuario = repo.findByUsernameFetchAcesso(email);
 		if(usuario == null) 
-			usuario = repo.findByNome(nome);
+			usuario = repo.findByNome(email);
 		if(usuario == null) 
 				throw new Error("Usuario não existe!");
 			return new UsuarioPrincipal(usuario);

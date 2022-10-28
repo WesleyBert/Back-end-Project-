@@ -20,7 +20,7 @@ public class Acesso{
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String nome;
+	private String email;
 
 	public Acesso(Long id) {
 		super();

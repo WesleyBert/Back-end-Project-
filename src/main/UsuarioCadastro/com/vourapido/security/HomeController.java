@@ -10,17 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "http://127.0.0.1:5173", maxAge = 3600)
 public class HomeController {
 	
-	
-
-	
-	 @PreAuthorize("hasRole('usuario')")
-	    @GetMapping("/usuario")
+	    @GetMapping("/login")
 	    public String usuario() {
-	        return "hwllou";
+	        return "login";
 	    }
 	
 	 
-	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/admin")
 	public String admin() {
 		return "Olá admin";

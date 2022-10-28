@@ -25,7 +25,7 @@ public class SecurityConfig {
 	
 	
 	private final UsuarioDetailsService usuarioDetailsService;
-
+	
 	public SecurityConfig(UsuarioDetailsService usuarioDetailsService) {
 		this.usuarioDetailsService = usuarioDetailsService;
 	}
@@ -40,10 +40,11 @@ public class SecurityConfig {
 	(HttpSecurity http) throws Exception {
 		return http
 				.csrf().disable()
-				.authorizeHttpRequests(auth -> auth
-				.antMatchers("/login","/home","/user").permitAll()
-					.anyRequest().authenticated()
-					)
+				.authorizeRequests(auth -> auth
+						.antMatchers("/","/home","/usuario","/passagem",
+								"/passagem/listar/","/passagem/buscar","/usuario/**").permitAll()
+						.anyRequest().authenticated()
+						)
 				.userDetailsService(usuarioDetailsService)
 				.headers(headers -> headers.frameOptions().sameOrigin())
 				.httpBasic(withDefaults())

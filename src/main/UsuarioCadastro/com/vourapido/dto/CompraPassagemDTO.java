@@ -12,10 +12,11 @@ public class CompraPassagemDTO {
 
 	private Long id;
 	private String nome;
-	private Integer idade;
+	private String Senha;
 	private BigDecimal valor;
 	private String  dataCompra;
 	private Long usuario;
 	private String tipo;
 	private String Status;
+	
 }

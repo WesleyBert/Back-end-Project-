@@ -66,9 +66,6 @@ public class CompraPassagemServiceImpl implements CompraPassagemService {
 
 	@Override
 	public void validar(CompraPassagem comprapassagem) {
-		if(comprapassagem.getIdade() < 18) {
-			throw new RegraNegocioException("Apenas maiores de 18 poderam comprar passagens!!"); 
-		}
 		
 		if(comprapassagem.getDataCompra() == null || comprapassagem.getDataCompra().toString().length() != 4) {
 			throw new RegraNegocioException("Informe uma Data Válida!");

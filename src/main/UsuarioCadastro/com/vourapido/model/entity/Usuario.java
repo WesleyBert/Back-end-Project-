@@ -1,13 +1,13 @@
 package com.vourapido.model.entity;
 
-import java.util.List;   
+import java.util.List ;    
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "usuario")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-
 
 public class Usuario {
 
@@ -42,6 +41,7 @@ public class Usuario {
 	@Column
 	private String senha;
 
-	@ElementCollection
+	@ManyToMany
 	private List<Acesso> acesso;
+
 }

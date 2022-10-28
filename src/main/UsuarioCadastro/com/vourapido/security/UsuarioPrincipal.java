@@ -19,18 +19,16 @@ public class UsuarioPrincipal implements UserDetails{
 	
 	private String nome;
 	private String password;
-	private String email;
 	private Collection<? extends GrantedAuthority>Authorities;
 
 	public UsuarioPrincipal(Usuario usuario) {
 		this.nome = usuario.getNome();
 		this.password = usuario.getSenha();
-		this.email = usuario.getEmail();
 		try {
 			this.Authorities = usuario.getAcesso()
 					.stream().map(acesso -> {
 				return new
-						SimpleGrantedAuthority("Acesso" + acesso.getNome());
+						SimpleGrantedAuthority("ROLES" + acesso.getId());
 			}).collect(Collectors.toList());
 		}catch(Exception e) {
 			this.Authorities = new ArrayList<>();
@@ -48,10 +46,6 @@ public class UsuarioPrincipal implements UserDetails{
 	
 	public String getNome() {
 		return nome;
-	}
-	
-	public String getEmail() {
-		return email;
 	}
 
 	@Override

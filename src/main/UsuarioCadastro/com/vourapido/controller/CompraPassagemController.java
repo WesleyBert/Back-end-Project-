@@ -52,7 +52,7 @@ public class CompraPassagemController {
 		}
 	}
 	
-	@PutMapping("{id}")
+	@PutMapping("/atualizar")
 	public ResponseEntity atualizar(@PathVariable Long id, @RequestBody CompraPassagemDTO dto) {
 		return service.buscarPorId(id).map(entity -> {
 				try {
@@ -83,7 +83,7 @@ public class CompraPassagemController {
 		}).orElseGet(() -> new ResponseEntity("Lançamento não encontrado", HttpStatus.BAD_REQUEST));
 	}
 	
-	@DeleteMapping("{id}")
+	@DeleteMapping("/delete")
 	public ResponseEntity deletar(@PathVariable("id") Long id) {
 		return service.buscarPorId(id).map(entity -> {
 			service.deletar(entity);
@@ -91,17 +91,17 @@ public class CompraPassagemController {
 		}).orElseGet(() -> new ResponseEntity<String>("Lançamento não encontrado", HttpStatus.BAD_REQUEST));
 	}
 	
-	@GetMapping
+	@GetMapping("{id}/buscar")
 	public ResponseEntity buscar(
 			@RequestParam(value = "nome", required = false) String  nome,
-			@RequestParam(value = "idade", required = false) Integer idade,
+			@RequestParam(value = "Senha", required = false) String senha,
 			@RequestParam(value = "valor", required = false) BigDecimal valor,
 			@RequestParam(value = "dataCompra", required = false) String dataCompra,
 			@RequestParam(value = "usuario") Long idUsuario
 			) {
 		CompraPassagem passagemSearch = new CompraPassagem();
 		passagemSearch.setDataCompra(dataCompra);
-		passagemSearch.setIdade(idade);
+		passagemSearch.setSenha(senha);
 		passagemSearch.setNome(nome);
 		passagemSearch.setValor(valor);
 		
@@ -123,7 +123,7 @@ public class CompraPassagemController {
 		CompraPassagem comprapassagem = new CompraPassagem();
 			comprapassagem.setId(dto.getId());
 			comprapassagem.setDataCompra(dto.getDataCompra());
-			comprapassagem.setIdade(dto.getIdade());
+			comprapassagem.setSenha(dto.getSenha());
 			comprapassagem.setNome(dto.getNome());
 			comprapassagem.setValor(dto.getValor());
 			
@@ -143,6 +143,5 @@ public class CompraPassagemController {
 			
 			return comprapassagem;
 	}
+	
 	}
-	
-	

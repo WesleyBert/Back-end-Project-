@@ -1,12 +1,14 @@
 package com.vourapido.controller;
 
 
-import java.math.BigDecimal;
+import java.math.BigDecimal;  
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +24,11 @@ import com.vourapido.model.entity.Usuario;
 import com.vourapido.services.CompraPassagemService;
 import com.vourapido.services.UsuarioService;
 
+
 @CrossOrigin(origins = "http://127.0.0.1:5173", maxAge = 3600)
-@RestController
+@Controller
 @RequestMapping("/usuario")
+
 public class UsuarioController {
 	
 	@Autowired
@@ -32,11 +36,7 @@ public class UsuarioController {
 	
 	@Autowired
 	private CompraPassagemService passagemservice;
-	
-	@GetMapping("/user")
-	public String helloWord() {
-		return "Oi";
-	}
+
 	
 	@PostMapping("/login")
 	public ResponseEntity autenticar(@RequestBody UsuarioDTO dto) { 
@@ -64,16 +64,15 @@ public class UsuarioController {
 		}
 	}
 	
+//	
+//	@GetMapping("{id}")
+//		public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") long UsuarioId) { 
+//			return new ResponseEntity<Usuario>(service.getUsuarioById(UsuarioId), HttpStatus.OK);
+//		}
 	
-	@GetMapping("{id}/saldo")
-	public ResponseEntity valorPassagem(@PathVariable Long id) {
-		Optional<Usuario> usuario = service.buscarPorId(id);
-	
-		if(!usuario.isPresent()) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
-		}
-		
-		BigDecimal valor = passagemservice.obterSaldoPorUsuario(id);
-		return ResponseEntity.ok(valor);
+	@GetMapping("/listar")
+	public ResponseEntity<List<Usuario>> findAll() { 
+		List<Usuario> funcionarios = service.getAllUsuario();
+		return ResponseEntity.ok().body(funcionarios);
 	}
 }

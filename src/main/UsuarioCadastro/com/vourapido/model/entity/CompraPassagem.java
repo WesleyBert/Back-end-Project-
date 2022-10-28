@@ -24,7 +24,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
   
 @Entity
-@Table(name="CompraPassagem")
+@Table(name="Passagem")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -44,7 +44,7 @@ public class CompraPassagem {
 	private Usuario usuario;
 	
 	@Column
-	private Integer idade;
+	private String senha;
 	
 	@Column
 	private BigDecimal valor;
